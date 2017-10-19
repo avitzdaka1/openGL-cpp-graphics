@@ -1,5 +1,7 @@
 #pragma once
 #include "GL\glew.h"
+//#include "glm\vec3.hpp"
+//#include "glm\glm.hpp"
 #include "GLFW\glfw3.h"
 #include <stdio.h>
 #include <stdlib.h>

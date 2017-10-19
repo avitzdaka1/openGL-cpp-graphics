@@ -74,13 +74,17 @@ ShaderProgram::ShaderProgram(const char* vertexFile,const char* fragmentFile)
 
 
 	glValidateProgram(this->programID);
-
+	getAllUniformLocations();
 
 }
 
 void ShaderProgram::start()
 {
 		glUseProgram(this->programID);
+}
+void ShaderProgram::loadFloat(int location, float value)
+{
+	glUniform1f(location, value);
 }
 
 void ShaderProgram::stop()
@@ -103,7 +107,17 @@ void ShaderProgram::bindAttribute(int attribute, const char* variableName)
 	glBindAttribLocation(this->programID, attribute, variableName);
 }
 
-void ShaderProgram::bindAttributes()
+//void ShaderProgram::bindAttributes()
+//{
+
+//}
+
+int ShaderProgram::getUniformLocation(char* uniformName)
+{
+	return glGetUniformLocation(this->programID, uniformName);
+}
+
+void ShaderProgram::getAllUniformLocations()
 {
 
 }

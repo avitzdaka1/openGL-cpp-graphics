@@ -12,6 +12,10 @@ private:
 	int loadShader(const string, int);
 
 protected:
+//	void loadVector(int, glm::vec3);
+	void loadFloat(int, float);
+	int getUniformLocation(char*);
+	virtual void getAllUniformLocations();
 	virtual void bindAttributes();
 	void bindAttribute(int, const char*);
 

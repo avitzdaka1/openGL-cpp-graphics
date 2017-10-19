@@ -1,5 +1,5 @@
 
-//This is a changed version
+//v0.03
 
 #include "StaticShader.h"
 

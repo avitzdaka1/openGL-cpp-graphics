@@ -9,7 +9,7 @@ class StaticShader : public ShaderProgram
 	
 
 protected:
-	void bindAttributes() ;
+	virtual void bindAttributes();
 
 public:
 	StaticShader();
