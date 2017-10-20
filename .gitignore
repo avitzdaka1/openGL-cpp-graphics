@@ -9,9 +9,11 @@
 *.userosscache
 *.sln.docstates
 test2/*.vcxproj
-
+test2/test2.vcxproj
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+test2.vcxproj.filters
+
 
 # Build results
 [Dd]ebug/
