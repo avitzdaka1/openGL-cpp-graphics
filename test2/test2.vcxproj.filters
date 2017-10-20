@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\shaders">
-      <UniqueIdentifier>{12626706-f7f8-4e30-8cb0-85e7af6ac696}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\includes">
       <UniqueIdentifier>{d3d370c7-b38d-4d54-ab02-57eac7beaac7}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,21 @@
     </Filter>
     <Filter Include="Source Files\textures">
       <UniqueIdentifier>{899b9ce1-7537-438c-adfe-a333d270678c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\toolbox">
+      <UniqueIdentifier>{96866ebd-02bd-4d01-a8ca-166d3a53b9a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\toolbox">
+      <UniqueIdentifier>{c77ddb29-4d5b-4a2d-bf37-6ec0d5adac45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\entities">
+      <UniqueIdentifier>{49d771e5-b76b-42ff-bbf5-3e6ef3760534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entities">
+      <UniqueIdentifier>{c7ada01d-3189-49fe-bae4-2c568665d115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\shaders">
+      <UniqueIdentifier>{a1db26d5-23f7-4419-8978-94686613089a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,14 +81,14 @@
     <ClCompile Include="TexturedModel.cpp">
       <Filter>Source Files\models</Filter>
     </ClCompile>
+    <ClCompile Include="Maths.cpp">
+      <Filter>Source Files\toolbox</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files\shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticShader.h">
-      <Filter>Header Files\shaders</Filter>
-    </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>Header Files\includes</Filter>
     </ClInclude>
@@ -97,6 +109,18 @@
     </ClInclude>
     <ClInclude Include="TexturedModel.h">
       <Filter>Header Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="Maths.h">
+      <Filter>Header Files\toolbox</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticShader.h">
+      <Filter>Header Files\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files\shaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
