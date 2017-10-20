@@ -50,8 +50,8 @@ ShaderProgram::ShaderProgram(const char* vertexFile,const char* fragmentFile)
 	this->programID = glCreateProgram();
 	glAttachShader(this->programID, this->vertexShaderID);
 	glAttachShader(this->programID, this->fragmentShaderID);
-	bindAttributes();
-	//bindAttribute(0, "position");
+	
+	
 	glLinkProgram(this->programID);
 
 	GLint isLinked = 0;
@@ -71,10 +71,8 @@ ShaderProgram::ShaderProgram(const char* vertexFile,const char* fragmentFile)
 	}
 	glDetachShader(this->programID, this->vertexShaderID);
 	glDetachShader(this->programID, this->fragmentShaderID);
-
-
 	glValidateProgram(this->programID);
-	getAllUniformLocations();
+	
 
 }
 
@@ -107,17 +105,19 @@ void ShaderProgram::bindAttribute(int attribute, const char* variableName)
 	glBindAttribLocation(this->programID, attribute, variableName);
 }
 
-//void ShaderProgram::bindAttributes()
-//{
 
-//}
 
 int ShaderProgram::getUniformLocation(char* uniformName)
 {
 	return glGetUniformLocation(this->programID, uniformName);
 }
 
-void ShaderProgram::getAllUniformLocations()
+void ShaderProgram::loadVector(int location, glm::vec3 vectorf)
 {
+	glUniform3f(location, vectorf.x, vectorf.y, vectorf.z);
+}
 
+void ShaderProgram::loadMatrix(int location, glm::mat4 matrix)
+{
+	glUniformMatrix4fv(location, 1, false, glm::value_ptr(matrix));
 }

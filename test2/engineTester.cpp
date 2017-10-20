@@ -1,7 +1,8 @@
 
-//v0.052
+//v0.06
 
-#include "StaticShader.h"
+#include "Renderer.h"
+#include "Loader.h"
 
 using namespace std;
 
@@ -23,7 +24,7 @@ int main()
 		return -1;
 	}
 	DisplayManager display = DisplayManager();
-
+	
 	display.createDisplay();
 	 //glewExperimental=GL_TRUE;
   GLenum err=glewInit();
@@ -66,12 +67,15 @@ int main()
 	ModelTexture texture = ModelTexture(loader.loadTexture("res/pic1.bmp"));
 	TexturedModel* texturedModel = new TexturedModel(model, texture);
 	
+	Entity entity = Entity(*texturedModel,glm::vec3(-1,0,0),0.0f,0.0f,0.0f,1.0f);
+	
+
 	while (!display.checkIfWindowOpen())
 	{
 		renderer.prepare();
 		//game logic
 		shader.start();
-		renderer.render(*texturedModel);
+		renderer.render(entity,shader);
 		shader.stop();
 		display.updateDisplay();
 		

@@ -1,7 +1,8 @@
 #pragma once
 #include "GL\glew.h"
-//#include "glm\vec3.hpp"
-//#include "glm\glm.hpp"
+#include "glm\glm.hpp"
+#include "glm\gtc\type_ptr.hpp"
+#include <glm/gtc/matrix_transform.hpp>
 #include "GLFW\glfw3.h"
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,5 +1,5 @@
 #pragma once
-#include "Renderer.h"
+#include "Entity.h"
 
 
 class ShaderProgram
@@ -12,11 +12,11 @@ private:
 	int loadShader(const string, int);
 
 protected:
-//	void loadVector(int, glm::vec3);
+	void loadVector(int, glm::vec3);
 	void loadFloat(int, float);
 	int getUniformLocation(char*);
-	virtual void getAllUniformLocations();
-	virtual void bindAttributes();
+	virtual void getAllUniformLocations() = 0;
+	virtual void bindAttributes() = 0;
 	void bindAttribute(int, const char*);
 
 public:
@@ -26,5 +26,7 @@ public:
 	void start();
 	void stop();
 	void cleanUP();
+	void loadMatrix(int, glm::mat4);
 
 };
+

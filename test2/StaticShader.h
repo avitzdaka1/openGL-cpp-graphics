@@ -6,13 +6,15 @@ static char* FRAGMENT_FILE = "shaders/fragmentShader.glsl";
 
 class StaticShader : public ShaderProgram
 {
-	
+private:
+	int location_transformationMatrix;
 
 protected:
-	virtual void bindAttributes();
+	void bindAttributes();
+	void getAllUniformLocations();
 
 public:
 	StaticShader();
+	void loadTransformationMatrix(glm::mat4);
 
 };
-

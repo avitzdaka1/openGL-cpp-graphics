@@ -1,12 +1,13 @@
 #pragma once
 
-#include "Loader.h"
-#include "TexturedModel.h"
+
+#include "StaticShader.h"
+#include "Maths.h"
 
 class Renderer
 {
 public:
 	void prepare();
-	void render(TexturedModel &);
+	void render(Entity,StaticShader);
 };
 
