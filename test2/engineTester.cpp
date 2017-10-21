@@ -1,8 +1,9 @@
 
-//v0.06
+//v0.07
 
 #include "Renderer.h"
 #include "Loader.h"
+
 
 using namespace std;
 
@@ -37,44 +38,103 @@ int main()
 
 	
 	Loader loader = Loader();
-	Renderer renderer = Renderer();
 	StaticShader shader = StaticShader();
+	Renderer renderer = Renderer(shader);
 
-	float vertices[] =
-	{
-		-0.5f, 0.5f, 0,   // Left-bottom
-		-0.5f, -0.5f, 0,
-		0.5f, -0.5f, 0,
-		0.5f, 0.5f, 0,   // Right-top
-	
+	float vertices[] = {
+		-0.5f,0.5f,-0.5f,
+		-0.5f,-0.5f,-0.5f,
+		0.5f,-0.5f,-0.5f,
+		0.5f,0.5f,-0.5f,
+
+		-0.5f,0.5f,0.5f,
+		-0.5f,-0.5f,0.5f,
+		0.5f,-0.5f,0.5f,
+		0.5f,0.5f,0.5f,
+
+		0.5f,0.5f,-0.5f,
+		0.5f,-0.5f,-0.5f,
+		0.5f,-0.5f,0.5f,
+		0.5f,0.5f,0.5f,
+
+		-0.5f,0.5f,-0.5f,
+		-0.5f,-0.5f,-0.5f,
+		-0.5f,-0.5f,0.5f,
+		-0.5f,0.5f,0.5f,
+
+		-0.5f,0.5f,0.5f,
+		-0.5f,0.5f,-0.5f,
+		0.5f,0.5f,-0.5f,
+		0.5f,0.5f,0.5f,
+
+		-0.5f,-0.5f,0.5f,
+		-0.5f,-0.5f,-0.5f,
+		0.5f,-0.5f,-0.5f,
+		0.5f,-0.5f,0.5f
+
 	};
 
-	int indices[] = 
-	{
-		0,1,3,
-		3,1,2
-	};
+	float textureCoords[] = {
 
-	float textureCoords[] =
-	{
+		0,0,
+		0,1,
+		1,1,
+		1,0,
+		0,0,
+		0,1,
+		1,1,
+		1,0,
+		0,0,
+		0,1,
+		1,1,
+		1,0,
+		0,0,
+		0,1,
+		1,1,
+		1,0,
+		0,0,
+		0,1,
+		1,1,
+		1,0,
 		0,0,
 		0,1,
 		1,1,
 		1,0
+
+
 	};
 
-	RawModel* model = loader.loadToVAO(vertices,12, textureCoords,8,indices,6);
+	int indices[] = {
+		0,1,3,
+		3,1,2,
+		4,5,7,
+		7,5,6,
+		8,9,11,
+		11,9,10,
+		12,13,15,
+		15,13,14,
+		16,17,19,
+		19,17,18,
+		20,21,23,
+		23,21,22
+
+	};
+
+	RawModel* model = loader.loadToVAO(vertices,72, textureCoords,48,indices,36);
 	ModelTexture texture = ModelTexture(loader.loadTexture("res/pic1.bmp"));
 	TexturedModel* texturedModel = new TexturedModel(model, texture);
+	Entity entity = Entity(*texturedModel,glm::vec3(0,0,-5),0.0f,0.0f,0.0f,1.0f);
 	
-	Entity entity = Entity(*texturedModel,glm::vec3(-1,0,0),0.0f,0.0f,0.0f,1.0f);
-	
+	Camera camera = Camera();
 
 	while (!display.checkIfWindowOpen())
 	{
+		entity.increaseRotation(0, 0.5, -0.5f);
+		camera.move(display);
 		renderer.prepare();
 		//game logic
 		shader.start();
+		shader.loadViewMatrix(camera);
 		renderer.render(entity,shader);
 		shader.stop();
 		display.updateDisplay();

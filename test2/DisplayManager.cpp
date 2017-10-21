@@ -35,6 +35,11 @@ void DisplayManager::closeDisplay()
 	glfwDestroyWindow(window);
 }
 
+GLFWwindow * DisplayManager::getWindow()
+{
+	return this->window;
+}
+
 void DisplayManager::updateDisplay()
 {
 	//glfwSwapInterval(-1);

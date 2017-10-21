@@ -30,4 +30,6 @@ public:
 	bool checkIfWindowOpen();
 
 	void closeDisplay();
+
+	GLFWwindow* getWindow();
 };

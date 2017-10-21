@@ -16,10 +16,22 @@ void StaticShader::bindAttributes()
 void StaticShader::getAllUniformLocations()
 {
 	location_transformationMatrix = getUniformLocation("transformationMatrix");
-
+	location_projectionMatrix = getUniformLocation("projectionMatrix");
+	location_viewMatrix = getUniformLocation("viewMatrix");
 }
 
 void StaticShader::loadTransformationMatrix(glm::mat4 matrix)
 {
 	loadMatrix(location_transformationMatrix, matrix);
+}
+
+void StaticShader::loadProjectionMatrix(glm::mat4 projection)
+{
+	loadMatrix(location_projectionMatrix, projection);
+}
+
+void StaticShader::loadViewMatrix(Camera camera)
+{
+	glm::mat4 viewMatrix = Maths::createViewMatrix(camera);
+	loadMatrix(location_viewMatrix, viewMatrix);
 }
