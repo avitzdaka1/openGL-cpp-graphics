@@ -1,8 +1,8 @@
 
-//v0.07
+//v0.08
 
 #include "Renderer.h"
-#include "Loader.h"
+#include "OBJLoader.h"
 
 
 using namespace std;
@@ -40,7 +40,7 @@ int main()
 	Loader loader = Loader();
 	StaticShader shader = StaticShader();
 	Renderer renderer = Renderer(shader);
-
+	/*
 	float vertices[] = {
 		-0.5f,0.5f,-0.5f,
 		-0.5f,-0.5f,-0.5f,
@@ -119,17 +119,21 @@ int main()
 		23,21,22
 
 	};
-
-	RawModel* model = loader.loadToVAO(vertices,72, textureCoords,48,indices,36);
-	ModelTexture texture = ModelTexture(loader.loadTexture("res/pic1.bmp"));
+	*/
+	RawModel* model = OBJLoader::loadObjModel("res/stall.obj", loader);
+	ModelTexture texture = ModelTexture(loader.loadTexture("res/stall.png"));
 	TexturedModel* texturedModel = new TexturedModel(model, texture);
-	Entity entity = Entity(*texturedModel,glm::vec3(0,0,-5),0.0f,0.0f,0.0f,1.0f);
+	Entity entity = Entity(*texturedModel,glm::vec3(0,0,-50),0.0f,0.0f,0.0f,1.0f);
 	
 	Camera camera = Camera();
 
+	//OBJLoader a;
+	//a.loadObjModel("res/stall.obj", loader);
+
+
 	while (!display.checkIfWindowOpen())
 	{
-		entity.increaseRotation(0, 0.5, -0.5f);
+		entity.increaseRotation(0, 1, 0);
 		camera.move(display);
 		renderer.prepare();
 		//game logic

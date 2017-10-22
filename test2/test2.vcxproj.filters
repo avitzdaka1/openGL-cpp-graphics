@@ -90,6 +90,9 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\entities</Filter>
     </ClCompile>
+    <ClCompile Include="OBJLoader.cpp">
+      <Filter>Source Files\render engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJLoader.h">
+      <Filter>Header Files\render engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
