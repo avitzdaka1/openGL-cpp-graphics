@@ -81,14 +81,14 @@
     <ClCompile Include="TexturedModel.cpp">
       <Filter>Source Files\models</Filter>
     </ClCompile>
-    <ClCompile Include="Maths.cpp">
-      <Filter>Source Files\toolbox</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\entities</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\entities</Filter>
+      <Filter>Source Files\models</Filter>
+    </ClCompile>
+    <ClCompile Include="Maths.cpp">
+      <Filter>Source Files\toolbox</Filter>
     </ClCompile>
     <ClCompile Include="OBJLoader.cpp">
       <Filter>Source Files\render engine</Filter>
@@ -116,20 +116,20 @@
     <ClInclude Include="TexturedModel.h">
       <Filter>Header Files\models</Filter>
     </ClInclude>
-    <ClInclude Include="Maths.h">
-      <Filter>Header Files\toolbox</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\entities</Filter>
-    </ClInclude>
     <ClInclude Include="StaticShader.h">
       <Filter>Header Files\shaders</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Header Files\shaders</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="Entity.h">
       <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\models</Filter>
+    </ClInclude>
+    <ClInclude Include="Maths.h">
+      <Filter>Header Files\toolbox</Filter>
     </ClInclude>
     <ClInclude Include="OBJLoader.h">
       <Filter>Header Files\render engine</Filter>

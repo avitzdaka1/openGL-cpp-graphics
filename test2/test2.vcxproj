@@ -76,7 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Maksim\Source\Repos\openGL-cpp-repo\test2\openGL stuff\headerFiles;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\openGL stuff\headerFiles;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\openGL stuff\libFiles;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -166,10 +166,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DisplayManager.cpp" />
     <ClCompile Include="engineTester.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="Maths.cpp" />
     <ClCompile Include="ModelTexture.cpp" />
+    <ClCompile Include="OBJLoader.cpp" />
     <ClCompile Include="RawModel.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -177,9 +181,13 @@
     <ClCompile Include="TexturedModel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="DisplayManager.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Loader.h" />
+    <ClInclude Include="Maths.h" />
     <ClInclude Include="ModelTexture.h" />
+    <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="RawModel.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />

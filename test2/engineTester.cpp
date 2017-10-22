@@ -1,5 +1,5 @@
 
-//v0.08
+//v0.081
 
 #include "Renderer.h"
 #include "OBJLoader.h"
@@ -133,7 +133,7 @@ int main()
 
 	while (!display.checkIfWindowOpen())
 	{
-		entity.increaseRotation(0, 1, 0);
+		entity.increaseRotation(0, 0.1, 0);
 		camera.move(display);
 		renderer.prepare();
 		//game logic
