@@ -185,5 +185,6 @@ RawModel* OBJLoader::loadObjModel(char * fname, Loader loader)
 	for (int i = 0; i < indices.size(); i++)
 		indicesArray[i] = indices[i];
 
-	return loader.loadToVAO(verticesArray, vertices.size() * 3, textureArray, textures.size() * 3, indicesArray, indices.size());
+
+	return loader.loadToVAO(verticesArray, vertices.size() * 3, textureArray, vertices.size()*2, indicesArray, indices.size());
 }
