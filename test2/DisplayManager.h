@@ -1,4 +1,7 @@
 #pragma once
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 #include "GL\glew.h"
 #include "glm\glm.hpp"
 #include "glm\gtc\type_ptr.hpp"
@@ -10,6 +13,7 @@
 #include <string>
 #include <iostream>
 #define STB_IMAGE_IMPLEMENTATION
+
 
 #include <vector>
 

@@ -1,6 +1,15 @@
 #include "OBJLoader.h"
 #include <sstream>
 
+struct Texture {
+	unsigned int id;
+	string type;
+};
+struct Vertex {
+	glm::vec3 Position;
+	glm::vec3 Normal;
+	glm::vec2 TexCoords;
+};
 
 void OBJLoader::processVertex(std::vector<string> vertexData, std::vector<int> &indices, std::vector<glm::vec2> textures, std::vector<glm::vec3> normals, float textureArray[], float normalsArray[])
 {
@@ -15,176 +24,86 @@ void OBJLoader::processVertex(std::vector<string> vertexData, std::vector<int> &
 	normalsArray[currentVertexPointer * 3 + 2] = currentNorm.z;
 }
 
-RawModel* OBJLoader::loadObjModel(char * fname, Loader loader)
+
+
+
+
+RawModel * OBJLoader::loadObjModel(string fname, Loader loader)
 {
-	ifstream myfile;
-	std::string line;
-	std::vector<glm::vec3> vertices;
-	std::vector<glm::vec2> textures;
-	std::vector<glm::vec3> normals;
-	std::vector<int> indices;
-	float* verticesArray;
-	float* normalsArray;
-	float* textureArray;
-	int* indicesArray;
-	int elements;
-	std::string* tempArray;
-	std::string tempString;
-	myfile.open(fname, std::ios::in);
 
-	if (myfile.is_open())
+	
+	Assimp::Importer importer;
+	const aiScene *scene = importer.ReadFile(fname, aiProcess_Triangulate | aiProcess_FlipUVs);
+
+	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
 	{
-		while (myfile.good())
-		{
-			std::getline(myfile, line);
-			if (line[0] == 'v' && line[1] == ' ')
-			{
-				elements = 3;
-				tempArray = new std::string[3];
-				std::stringstream ssin(line);
-				ssin >> tempString;
-				for (int i = 0; i < elements; i++)
-				{
-					ssin >> tempArray[i];
-				}
-				glm::vec3 vertex = glm::vec3(std::stof(tempArray[0], 0), std::stof(tempArray[1], 0), std::stof(tempArray[2], 0));
-				vertices.push_back(vertex);
-				delete[](tempArray);
-
-			}
-			else if (line[0] == 'v' && line[1] == 't')
-			{
-				elements = 2;
-				tempArray = new std::string[2];
-				std::stringstream ssin(line);
-				ssin >> tempString;
-				for (int i = 0; i < elements; i++)
-				{
-					ssin >> tempArray[i];
-				}
-				glm::vec2 texture = glm::vec2(std::stof(tempArray[0], 0), std::stof(tempArray[1], 0));
-				textures.push_back(texture);
-				delete[](tempArray);
-			}
-			else if (line[0] == 'v' && line[1] == 'n')
-			{
-				elements = 3;
-				tempArray = new std::string[3];
-				std::stringstream ssin(line);
-				ssin >> tempString;
-				for (int i = 0; i < elements; i++)
-				{
-					ssin >> tempArray[i];
-				}
-				glm::vec3 normal = glm::vec3(std::stof(tempArray[0], 0), std::stof(tempArray[1], 0), std::stof(tempArray[2], 0));
-				normals.push_back(normal);
-				delete[](tempArray);
-			}
-			else if (line[0] == 'f')
-			{
-				textureArray = new float[vertices.size() * 2];
-				normalsArray = new float[vertices.size() * 3];
-				break;
-			}
-
-
-		}
-
-		while (myfile.good())
-		{
-			if (!line[0] == 'f')
-			{
-				std::getline(myfile, line);
-
-			}
-			elements = 3;
-			tempArray = new std::string[3];
-			std::stringstream ssin(line);
-			ssin >> tempString;
-			for (int i = 0; i < elements; i++)
-			{
-				ssin >> tempArray[i];
-			}
-			std::string vertex1[3];
-			std::string vertex2[3];
-			std::string vertex3[3];
-
-			int k = 0;
-			for (int j = 0; j < 3; j++)
-			{
-				int h = 0;
-				while (tempArray[0][k] != '/' && k < tempArray[0].length())
-				{
-
-					vertex1[j].append(string(1, tempArray[0][k]));
-					k++;
-					h++;
-				}
-				k++;
-			}
-
-
-			k = 0;
-			for (int j = 0; j < 3; j++)
-			{
-				while (tempArray[1][k] != '/' && k < tempArray[1].length())
-				{
-					vertex2[j].append(string(1, tempArray[1][k]));
-					k++;
-				}
-				k++;
-			}
-
-
-			k = 0;
-			for (int j = 0; j < 3; j++)
-			{
-
-				while (tempArray[2][k] != '/' && k < tempArray[2].length())
-				{
-					vertex3[j].append(string(1, tempArray[2][k]));
-					k++;
-				}
-				k++;
-			}
-
-
-
-			delete[](tempArray);
-
-			std::getline(myfile, line);
-
-			
-			std::vector<std::string> myvec1(3);
-			std::vector<std::string> myvec2(3);
-			std::vector<std::string> myvec3(3);
-			for (int i = 0; i < 3; i++)
-			{
-				myvec1[i] = vertex1[i];
-				myvec2[i] = vertex2[i];
-				myvec3[i] = vertex3[i];
-			}
-
-			processVertex(myvec1, indices, textures, normals, textureArray, normalsArray);
-			processVertex(myvec2, indices, textures, normals, textureArray, normalsArray);
-			processVertex(myvec3, indices, textures, normals, textureArray, normalsArray);
-		}
-	}
-	verticesArray = new float[vertices.size() * 3];
-	indicesArray = new int[indices.size()];
-
-	int vertexPointer = 0;
-
-	for (int i = 0; i < vertices.size(); i++)
-	{
-		verticesArray[vertexPointer++] = vertices[i].x;
-		verticesArray[vertexPointer++] = vertices[i].y;
-		verticesArray[vertexPointer++] = vertices[i].z;
+		cout << "ERROR::ASSIMP::" << importer.GetErrorString() << endl;
+		return new RawModel(31,1);
 	}
 
-	for (int i = 0; i < indices.size(); i++)
-		indicesArray[i] = indices[i];
+	aiMesh* a = scene->mMeshes[0];
 
+	vector<Vertex> vertices;
+	vector<int> indices;
+	vector<Texture> textures;
+	
+	for (int i = 0; i < a->mNumVertices; i++)
+	{
+		
+	
+		Vertex vertex;
+		
+		
+		glm::vec3 temp;
+		temp.x = a->mVertices[i].x;
+		temp.y = a->mVertices[i].y;
+		temp.z = a->mVertices[i].z;
+		
+		vertex.Position = temp;
+		
+		temp.x = a->mNormals[i].x;
+		temp.y = a->mNormals[i].y;
+		temp.z = a->mNormals[i].z;
+		vertex.Normal = temp;
 
-	return loader.loadToVAO(verticesArray, vertices.size() * 3, textureArray, vertices.size()*2, indicesArray, indices.size());
+		if (a->mTextureCoords[0]) // does the mesh contain texture coordinates?
+		{
+			glm::vec2 vec;
+			vec.x = a->mTextureCoords[0][i].x;
+			vec.y = a->mTextureCoords[0][i].y;
+			vertex.TexCoords = vec;
+		}
+		else
+			vertex.TexCoords = glm::vec2(0.0f, 0.0f);
+
+		vertices.push_back(vertex);
+
+		
+
+	}
+	
+	for (unsigned int i = 0; i < a->mNumFaces; i++)
+	{
+		aiFace face = a->mFaces[i];
+		for (unsigned int j = 0; j < face.mNumIndices; j++)
+			indices.push_back(face.mIndices[j]);
+	}
+
+	float* ver = new float[vertices.size() * 3];
+	float* tex = new float[vertices.size() * 2];
+	int* ind = new int[vertices.size()];
+	std::vector<glm::vec3> tempVer;
+	std::vector<glm::vec2> tempTex;
+	
+	for (int i = 0; i < vertices.size() ; i ++)
+	{
+		tempVer.push_back(vertices[i].Position);
+		tempTex.push_back(vertices[i].TexCoords);
+	}
+	
+	ind = &indices[0];
+	ver = &tempVer[0].x;
+	tex = &tempTex[0].x;
+
+	return loader.loadToVAO(ver, vertices.size() * 3, tex, vertices.size() * 2, ind, vertices.size());
 }

@@ -2,6 +2,7 @@
 
 Camera::Camera()
 {
+	
 }
 
 glm::vec3 Camera::getPosition()

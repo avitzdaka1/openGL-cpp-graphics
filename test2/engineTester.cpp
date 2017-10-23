@@ -1,5 +1,5 @@
 
-//v0.082
+//v0.09
 
 #include "Renderer.h"
 #include "OBJLoader.h"
@@ -40,7 +40,7 @@ int main()
 	Loader loader = Loader();
 	StaticShader shader = StaticShader();
 	Renderer renderer = Renderer(shader);
-	/*
+	
 	float vertices[] = {
 		-0.5f,0.5f,-0.5f,
 		-0.5f,-0.5f,-0.5f,
@@ -119,21 +119,19 @@ int main()
 		23,21,22
 
 	};
-	*/
-	RawModel* model = OBJLoader::loadObjModel("res/stall.obj", loader);
-	ModelTexture texture = ModelTexture(loader.loadTexture("res/stall.png"));
+	
+	RawModel* model = OBJLoader::loadObjModel("res/dragon.obj",loader);
+	ModelTexture texture = ModelTexture(loader.loadTexture("res/dragon.png"));
 	TexturedModel* texturedModel = new TexturedModel(model, texture);
 	Entity entity = Entity(*texturedModel,glm::vec3(0,0,-50),0.0f,0.0f,0.0f,1.0f);
 	
 	Camera camera = Camera();
 
-	//OBJLoader a;
-	//a.loadObjModel("res/stall.obj", loader);
 
 
 	while (!display.checkIfWindowOpen())
 	{
-		entity.increaseRotation(0, 0.1, 0);
+		entity.increaseRotation(0, 0.5, 0);
 		camera.move(display);
 		renderer.prepare();
 		//game logic
