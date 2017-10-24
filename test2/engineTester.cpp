@@ -1,5 +1,5 @@
 
-//v0.09
+//v0.1
 
 #include "Renderer.h"
 #include "OBJLoader.h"
@@ -120,7 +120,7 @@ int main()
 
 	};
 	
-	RawModel* model = OBJLoader::loadObjModel("res/dragon.obj",loader);
+	RawModel* model = OBJLoader::loadObjModel("res/dragon.myobject",loader);
 	ModelTexture texture = ModelTexture(loader.loadTexture("res/dragon.png"));
 	TexturedModel* texturedModel = new TexturedModel(model, texture);
 	Entity entity = Entity(*texturedModel,glm::vec3(0,0,-50),0.0f,0.0f,0.0f,1.0f);

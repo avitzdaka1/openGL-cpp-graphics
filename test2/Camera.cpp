@@ -29,21 +29,21 @@ void Camera::move(DisplayManager display)
 {
 	if (glfwGetKey(display.getWindow(), GLFW_KEY_W) == GLFW_PRESS)
 	{
-		position.z -= 0.02f;
+		position.z -= 0.1f;
 	}
 
 	if (glfwGetKey(display.getWindow(), GLFW_KEY_D) == GLFW_PRESS)
 	{
-		position.x += 0.02f;
+		position.x += 0.1f;
 	}
 
 	if (glfwGetKey(display.getWindow(), GLFW_KEY_A) == GLFW_PRESS)
 	{
-		position.x -= 0.02f;
+		position.x -= 0.1f;
 	}
 
 	if (glfwGetKey(display.getWindow(), GLFW_KEY_S) == GLFW_PRESS)
 	{
-		position.z += 0.02f;
+		position.z += 0.1f;
 	}
 }
