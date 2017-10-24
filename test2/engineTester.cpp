@@ -120,7 +120,7 @@ int main()
 
 	};
 	
-	RawModel* model = OBJLoader::loadObjModel("res/dragon.obj",loader);
+	RawModel* model = OBJLoader::loadObjModel("res/chair.obj",loader);
 	ModelTexture texture = ModelTexture(loader.loadTexture("res/dragon.png"));
 	TexturedModel* texturedModel = new TexturedModel(model, texture);
 	Entity entity = Entity(*texturedModel,glm::vec3(0,0,-50),0.0f,0.0f,0.0f,1.0f);
@@ -131,7 +131,7 @@ int main()
 
 	while (!display.checkIfWindowOpen())
 	{
-		entity.increaseRotation(0, 0.5, 0);
+		entity.increaseRotation(0, 0.1, 0.1);
 		camera.move(display);
 		renderer.prepare();
 		//game logic
