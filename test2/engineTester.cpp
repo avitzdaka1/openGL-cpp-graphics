@@ -131,7 +131,7 @@ int main()
 
 	while (!display.checkIfWindowOpen())
 	{
-		entity.increaseRotation(0, 0.5, 0);
+		entity.increaseRotation(0, 0.1, 0.1);
 		camera.move(display);
 		renderer.prepare();
 		//game logic
