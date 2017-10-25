@@ -1,12 +1,13 @@
 #include "Loader.h"
 #include "stb_image.h"
 
-RawModel* Loader::loadToVAO(float positions[], int size,float textureCoords[],int texSize, int indices[], int indicesSize)
+RawModel* Loader::loadToVAO(float positions[], int size,float textureCoords[],int texSize,float normals[], int normSize, int indices[], int indicesSize)
 {
 	GLuint vaoID = createVAO();
 	bindIndicesBuffer(indices, indicesSize);
 	storeDataInAttributeList(0, positions,3, size);
 	storeDataInAttributeList(1, textureCoords, 2, texSize);
+	storeDataInAttributeList(2, normals, 3, normSize);
 	unbindVAO();
 	return new RawModel(vaoID, indicesSize);
 }

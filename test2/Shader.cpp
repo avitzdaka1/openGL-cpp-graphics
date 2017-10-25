@@ -51,6 +51,8 @@ ShaderProgram::ShaderProgram(const char* vertexFile,const char* fragmentFile)
 	glAttachShader(this->programID, this->vertexShaderID);
 	glAttachShader(this->programID, this->fragmentShaderID);
 	
+
+
 	
 	glLinkProgram(this->programID);
 

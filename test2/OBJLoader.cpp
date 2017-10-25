@@ -116,7 +116,7 @@ RawModel * OBJLoader::loadObjModel(string fname, Loader loader)
 {
 	int buf_size = 1024;
 	std::ifstream vertexFile(fname);
-
+	
 
 	char* line = new char[buf_size];
 	
@@ -127,12 +127,14 @@ RawModel * OBJLoader::loadObjModel(string fname, Loader loader)
 		int* indices = new int[verAmount];
 		float* vertices = new float[verAmount * 3];
 		float* textures = new float[verAmount * 2];
-		int v = 0, t = 0;
+		float* normals = new float[verAmount * 3];
+		int v = 0, t = 0, n = 0;
 		for (int i = 0; i < verAmount; i++)
 		{
 			vertexFile.getline(line, buf_size);
-			sscanf_s(line, "%f" "%f" "%f" "%f" "%f", &vertices[v], &vertices[v+1], &vertices[v+2], &textures[t], &textures[t+1]);
+			sscanf_s(line, "%f" "%f" "%f" "%f" "%f" "%f" "%f" "%f", &vertices[v], &vertices[v+1], &vertices[v+2], &textures[t], &textures[t+1] , &normals[n], &normals[n + 1], &normals[n + 2]);
 			v += 3;
+			n += 3;
 			t += 2;
 		}
 		buf_size = 20;
@@ -143,6 +145,6 @@ RawModel * OBJLoader::loadObjModel(string fname, Loader loader)
 		vertexFile.close();
 		
 
-		return loader.loadToVAO(vertices, verAmount * 3, textures, verAmount * 2, indices, verAmount);
+		return loader.loadToVAO(vertices, verAmount * 3, textures, verAmount * 2, normals, verAmount * 3, indices, verAmount);
 }
 

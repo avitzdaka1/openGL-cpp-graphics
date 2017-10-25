@@ -15,7 +15,7 @@ private:
 	void bindIndicesBuffer(int[], int);
 	
 public:
-	RawModel* loadToVAO(float[],int,float[],int, int[], int);
+	RawModel* loadToVAO(float[],int,float[],int,float[],int, int[], int);
 	void cleanUP();
 	int loadTexture(char*);
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Shader.h"
+#include "Light.h"
 #include "Camera.h"
 #include "Maths.h"
 
@@ -12,6 +12,8 @@ private:
 	int location_transformationMatrix;
 	int location_projectionMatrix;
 	int location_viewMatrix;
+	int location_lightPosition;
+	int location_lightColour;
 protected:
 	void bindAttributes();
 	void getAllUniformLocations();
@@ -21,4 +23,6 @@ public:
 	void loadTransformationMatrix(glm::mat4);
 	void loadProjectionMatrix(glm::mat4);
 	void loadViewMatrix(Camera);
+	void loadLight(Light light);
+
 };
