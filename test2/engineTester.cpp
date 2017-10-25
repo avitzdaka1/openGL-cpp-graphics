@@ -1,9 +1,9 @@
 
-//v0.121
+//v0.13
 
-#include "Renderer.h"
+#include "MasterRenderer.h"
 #include "OBJLoader.h"
-
+#include <time.h>
 
 using namespace std;
 
@@ -38,8 +38,7 @@ int main()
 
 	
 	Loader loader = Loader();
-	StaticShader shader = StaticShader();
-	Renderer renderer = Renderer(shader);
+
 	
 	float vertices[] = {
 		-0.5f,0.5f,-0.5f,
@@ -121,41 +120,73 @@ int main()
 	};
 	
 	RawModel* model = OBJLoader::loadObjModel("res/dragon.myobject",loader);
+	RawModel* model2 = OBJLoader::loadObjModel("res/stall.myobject", loader);
 	
 	ModelTexture* texture = new ModelTexture(loader.loadTexture("res/dragon.png"));
+	ModelTexture* texture2 = new ModelTexture(loader.loadTexture("res/stall.bmp"));
 	texture->setShineDamper(10);
 	texture->setReflectivity(1);
 	
 	TexturedModel* texturedModel = new TexturedModel(model, *texture );
+	TexturedModel* texturedModel2 = new TexturedModel(model2, *texture2);
 
-	Entity entity = Entity(*texturedModel,glm::vec3(0,-5,-50),0.0f,0.0f,0.0f,1.0f);
+	//Entity entity = Entity(*texturedModel,glm::vec3(0,-5,-50),0.0f,0.0f,0.0f,1.0f);
 
-	
+	std::vector<Entity> allModels;
+	srand(time(NULL));
 
+	for (int i = 0; i < 100; i++)
+	{
+		float x = rand() % 10 *30 *pow(-1,i);
+		float y = rand() % 10  * (-1);
+		float z = rand() % 10 * 30 *pow(-1, i);
+		Entity temp = Entity(*texturedModel, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
+		Entity temp2 = Entity(*texturedModel2, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
+		allModels.push_back(temp);
+		allModels.push_back(temp2);
+	}
 
 	Light light = Light(glm::vec3(0, -30, 0),glm::vec3(1,1,1));
 
 
 	Camera camera = Camera();
-
+	
 	
 
+
+	double lastTime = glfwGetTime();
+	int nbFrames = 0;
+	MasterRenderer renderer = MasterRenderer();
 	while (!display.checkIfWindowOpen())
 	{
-		entity.increaseRotation(0, 0.5, 0);
+
+		// Measure speed
+		double currentTime = glfwGetTime();
+		nbFrames++;
+		if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
+											 // printf and reset timer
+			printf("%f ms/frame   fps:  %f \n", 1000.0 / double(nbFrames), (float)nbFrames);
+			nbFrames = 0;
+			lastTime += 1.0;
+		}
+
+
+		//entity.increaseRotation(0, 0.5, 0);
+		for (int i = 0; i < 200; i++)
+			allModels[i].increaseRotation(0, 2, 0);
 		camera.move(display);
-		renderer.prepare();
+		
 		//game logic
-		shader.start();
-		shader.loadLight(light);
-		shader.loadViewMatrix(camera);
-		renderer.render(entity,shader);
-		shader.stop();
+		
+		
+		for (int i = 0; i < 200; i++)
+			renderer.processEntity(allModels[i]);
+		
+		renderer.render(light,camera);
 		display.updateDisplay();
 		
 	}
-
-	shader.cleanUP();
+	renderer.cleanUp();
 	loader.cleanUP();
 	display.closeDisplay();
 

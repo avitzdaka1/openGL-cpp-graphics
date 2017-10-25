@@ -12,10 +12,16 @@ class Renderer
 {
 private:
 	glm::mat4 projectionMatrix;
+	StaticShader shader;
+
 	void createProjectionMatrix();
 public:
 	Renderer(StaticShader shader);
 	void prepare();
-	void render(Entity,StaticShader);
+	void render(std::map<TexturedModel, std::vector<Entity>>);
+	void prepareTexturedModel(TexturedModel model);
+
+	void unbindTexturedModel();
+	void prepareInstance(Entity);
 };
 
