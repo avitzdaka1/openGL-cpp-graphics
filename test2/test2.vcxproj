@@ -187,6 +187,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Loader.h" />
+    <ClInclude Include="MasterRenderer.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="ModelTexture.h" />
     <ClInclude Include="OBJLoader.h" />

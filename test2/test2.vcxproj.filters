@@ -140,5 +140,8 @@
     <ClInclude Include="Light.h">
       <Filter>Header Files\entities</Filter>
     </ClInclude>
+    <ClInclude Include="MasterRenderer.h">
+      <Filter>Header Files\render engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
