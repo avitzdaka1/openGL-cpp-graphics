@@ -35,95 +35,16 @@ int main()
     cout<<"glewInit failed, aborting."<<endl;
   }
 	
-
 	
 	Loader loader = Loader();
-
-	
-	float vertices[] = {
-		-0.5f,0.5f,-0.5f,
-		-0.5f,-0.5f,-0.5f,
-		0.5f,-0.5f,-0.5f,
-		0.5f,0.5f,-0.5f,
-
-		-0.5f,0.5f,0.5f,
-		-0.5f,-0.5f,0.5f,
-		0.5f,-0.5f,0.5f,
-		0.5f,0.5f,0.5f,
-
-		0.5f,0.5f,-0.5f,
-		0.5f,-0.5f,-0.5f,
-		0.5f,-0.5f,0.5f,
-		0.5f,0.5f,0.5f,
-
-		-0.5f,0.5f,-0.5f,
-		-0.5f,-0.5f,-0.5f,
-		-0.5f,-0.5f,0.5f,
-		-0.5f,0.5f,0.5f,
-
-		-0.5f,0.5f,0.5f,
-		-0.5f,0.5f,-0.5f,
-		0.5f,0.5f,-0.5f,
-		0.5f,0.5f,0.5f,
-
-		-0.5f,-0.5f,0.5f,
-		-0.5f,-0.5f,-0.5f,
-		0.5f,-0.5f,-0.5f,
-		0.5f,-0.5f,0.5f
-
-	};
-
-	float textureCoords[] = {
-
-		0,0,
-		0,1,
-		1,1,
-		1,0,
-		0,0,
-		0,1,
-		1,1,
-		1,0,
-		0,0,
-		0,1,
-		1,1,
-		1,0,
-		0,0,
-		0,1,
-		1,1,
-		1,0,
-		0,0,
-		0,1,
-		1,1,
-		1,0,
-		0,0,
-		0,1,
-		1,1,
-		1,0
-
-
-	};
-
-	int indices[] = {
-		0,1,3,
-		3,1,2,
-		4,5,7,
-		7,5,6,
-		8,9,11,
-		11,9,10,
-		12,13,15,
-		15,13,14,
-		16,17,19,
-		19,17,18,
-		20,21,23,
-		23,21,22
-
-	};
 	
 	RawModel* model = OBJLoader::loadObjModel("res/dragon.myobject",loader);
 	RawModel* model2 = OBJLoader::loadObjModel("res/stall.myobject", loader);
 	
 	ModelTexture* texture = new ModelTexture(loader.loadTexture("res/dragon.png"));
 	ModelTexture* texture2 = new ModelTexture(loader.loadTexture("res/stall.bmp"));
+	ModelTexture* terrTexture = new ModelTexture(loader.loadTexture("res/grass.jpg"));
+	ModelTexture* terrTexture2 = new ModelTexture(loader.loadTexture("res/water.jpg"));
 	texture->setShineDamper(10);
 	texture->setReflectivity(1);
 	
@@ -137,9 +58,9 @@ int main()
 
 	for (int i = 0; i < 100; i++)
 	{
-		float x = rand() % 10 *30 *pow(-1,i);
+		float x = rand() % 10 *10 *pow(-1,i);
 		float y = rand() % 10  * (-1);
-		float z = rand() % 10 * 30 *pow(-1, i);
+		float z = rand() % 10 * -30;
 		Entity temp = Entity(*texturedModel, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
 		Entity temp2 = Entity(*texturedModel2, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
 		allModels.push_back(temp);
@@ -147,12 +68,13 @@ int main()
 	}
 
 	Light light = Light(glm::vec3(0, -30, 0),glm::vec3(1,1,1));
-
+	Terrain terrain = Terrain(0,0,loader, *terrTexture);
+	Terrain terrain2 = Terrain(1, 0, loader, *terrTexture2);
 
 	Camera camera = Camera();
 	
-	
-
+	TexturedModel*  t = new TexturedModel(model, terrain2.getTexture());
+	Entity temp = Entity(*t, glm::vec3(0, 0, 0), 0, -2, 0, 1);
 
 	double lastTime = glfwGetTime();
 	int nbFrames = 0;
@@ -160,28 +82,28 @@ int main()
 	while (!display.checkIfWindowOpen())
 	{
 
-		// Measure speed
+		
 		double currentTime = glfwGetTime();
 		nbFrames++;
-		if (currentTime - lastTime >= 1.0) { // If last prinf() was more than 1 sec ago
-											 // printf and reset timer
-			printf("%f ms/frame   fps:  %f \n", 1000.0 / double(nbFrames), (float)nbFrames);
+		if (currentTime - lastTime >= 1.0) {
+			printf("%f ms/frame   fps:  %f \n", 1000.0 / double(nbFrames), (float)nbFrames);             // Print spf and fps to console.
 			nbFrames = 0;
 			lastTime += 1.0;
 		}
 
 
-		//entity.increaseRotation(0, 0.5, 0);
+
 		for (int i = 0; i < 200; i++)
-			allModels[i].increaseRotation(0, 2, 0);
+			allModels[i].increaseRotation(0, 2, 0);																	// Rotate objects.
 		camera.move(display);
 		
 		//game logic
 		
-		
-		for (int i = 0; i < 200; i++)
-			renderer.processEntity(allModels[i]);
-		
+	//	renderer.processTerrain(terrain);
+	//	renderer.processTerrain(terrain2);
+		//for (int i = 0; i < 200; i++)
+		//	renderer.processEntity(allModels[i]);																	// Process each object.
+		renderer.processEntity(temp);
 		renderer.render(light,camera);
 		display.updateDisplay();
 		

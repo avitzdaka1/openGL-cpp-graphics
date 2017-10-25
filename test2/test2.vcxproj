@@ -177,9 +177,12 @@
     <ClCompile Include="ModelTexture.cpp" />
     <ClCompile Include="OBJLoader.cpp" />
     <ClCompile Include="RawModel.cpp" />
-    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="EntityRenderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="StaticShader.cpp" />
+    <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="TerrainRenderer.cpp" />
+    <ClCompile Include="TerrainShader.cpp" />
     <ClCompile Include="TexturedModel.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -193,10 +196,13 @@
     <ClInclude Include="ModelTexture.h" />
     <ClInclude Include="OBJLoader.h" />
     <ClInclude Include="RawModel.h" />
-    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="EntityRenderer.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="StaticShader.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Terrain.h" />
+    <ClInclude Include="TerrainRenderer.h" />
+    <ClInclude Include="TerrainShader.h" />
     <ClInclude Include="TexturedModel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

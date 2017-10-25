@@ -1,7 +1,7 @@
 #pragma once
 #include "DisplayManager.h"
 
-extern GLFWwindow* window;
+
 
 class Camera
 {

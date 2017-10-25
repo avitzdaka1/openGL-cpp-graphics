@@ -4,20 +4,15 @@
 #include "StaticShader.h"
 #include "Maths.h"
 
-static const float FOV = 70;
-static const float NEAR_PLANE = 0.1f;
-static const float FAR_PLANE = 1000;
 
-class Renderer
+
+class EntityRenderer
 {
 private:
-	glm::mat4 projectionMatrix;
 	StaticShader shader;
 
-	void createProjectionMatrix();
 public:
-	Renderer(StaticShader shader);
-	void prepare();
+	EntityRenderer(StaticShader shader, glm::mat4);
 	void render(std::map<TexturedModel, std::vector<Entity>>);
 	void prepareTexturedModel(TexturedModel model);
 

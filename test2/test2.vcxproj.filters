@@ -52,15 +52,18 @@
     <Filter Include="Header Files\shaders">
       <UniqueIdentifier>{a1db26d5-23f7-4419-8978-94686613089a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\terrains">
+      <UniqueIdentifier>{7deb1f84-3c50-4052-80ff-1eaee33916dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\terrains">
+      <UniqueIdentifier>{ec61133b-084e-4743-9dd0-0280c6174cc2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RawModel.cpp">
       <Filter>Source Files\models</Filter>
     </ClCompile>
     <ClCompile Include="Loader.cpp">
-      <Filter>Source Files\render engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp">
       <Filter>Source Files\render engine</Filter>
     </ClCompile>
     <ClCompile Include="DisplayManager.cpp">
@@ -99,15 +102,24 @@
     <ClCompile Include="MasterRenderer.cpp">
       <Filter>Source Files\render engine</Filter>
     </ClCompile>
+    <ClCompile Include="EntityRenderer.cpp">
+      <Filter>Source Files\render engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Source Files\terrains</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainShader.cpp">
+      <Filter>Source Files\shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainRenderer.cpp">
+      <Filter>Source Files\render engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
       <Filter>Header Files\includes</Filter>
     </ClInclude>
     <ClInclude Include="Loader.h">
-      <Filter>Header Files\render engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
       <Filter>Header Files\render engine</Filter>
     </ClInclude>
     <ClInclude Include="DisplayManager.h">
@@ -144,6 +156,18 @@
       <Filter>Header Files\entities</Filter>
     </ClInclude>
     <ClInclude Include="MasterRenderer.h">
+      <Filter>Header Files\render engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Header Files\terrains</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityRenderer.h">
+      <Filter>Header Files\render engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainShader.h">
+      <Filter>Header Files\shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainRenderer.h">
       <Filter>Header Files\render engine</Filter>
     </ClInclude>
   </ItemGroup>
