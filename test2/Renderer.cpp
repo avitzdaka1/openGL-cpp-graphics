@@ -29,6 +29,9 @@ void Renderer::render(Entity entity, StaticShader shader)
 	
 	
 	shader.loadTransformationMatrix(transformationMatrix);
+	ModelTexture texture = model.getModelTexture();
+	shader.loadShineVariables(texture.getShineDamper(), texture.getReflectivity());
+
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, model.getModelTexture().getID());
 	glDrawElements(GL_TRIANGLES, rawModel.getVertexCount(),GL_UNSIGNED_INT, 0);

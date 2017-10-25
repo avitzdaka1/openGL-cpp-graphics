@@ -9,7 +9,7 @@ private:
 	ModelTexture texture;
 
 public:
-	TexturedModel(RawModel*,ModelTexture);
+	TexturedModel(RawModel*,ModelTexture &);
 	RawModel getRawModel();
 	ModelTexture getModelTexture();
 };

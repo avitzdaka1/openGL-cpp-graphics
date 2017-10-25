@@ -1,5 +1,5 @@
 
-//v0.11
+//v0.12
 
 #include "Renderer.h"
 #include "OBJLoader.h"
@@ -121,9 +121,18 @@ int main()
 	};
 	
 	RawModel* model = OBJLoader::loadObjModel("res/dragon.myobject",loader);
-	ModelTexture texture = ModelTexture(loader.loadTexture("res/dragon.png"));
-	TexturedModel* texturedModel = new TexturedModel(model, texture);
+	
+	ModelTexture* texture = new ModelTexture(loader.loadTexture("res/dragon.png"));
+	texture->setShineDamper(10);
+	texture->setReflectivity(1);
+	
+	TexturedModel* texturedModel = new TexturedModel(model, *texture );
+
 	Entity entity = Entity(*texturedModel,glm::vec3(0,-5,-50),0.0f,0.0f,0.0f,1.0f);
+
+	
+
+
 	Light light = Light(glm::vec3(0, -30, 0),glm::vec3(1,1,1));
 
 

@@ -1,6 +1,6 @@
 #include "TexturedModel.h"
 
-TexturedModel::TexturedModel(RawModel* rawModel, ModelTexture texture)
+TexturedModel::TexturedModel(RawModel* rawModel, ModelTexture &texture)
 	:rawModel(*rawModel), texture(texture)
 {
 	this->rawModel = *rawModel;

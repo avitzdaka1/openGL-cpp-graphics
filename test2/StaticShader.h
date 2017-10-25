@@ -14,6 +14,8 @@ private:
 	int location_viewMatrix;
 	int location_lightPosition;
 	int location_lightColour;
+	int location_shineDamper;
+	int location_reflectivity;
 protected:
 	void bindAttributes();
 	void getAllUniformLocations();
@@ -24,5 +26,6 @@ public:
 	void loadProjectionMatrix(glm::mat4);
 	void loadViewMatrix(Camera);
 	void loadLight(Light light);
+	void loadShineVariables(float, float);
 
 };
