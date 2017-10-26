@@ -12,7 +12,10 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <map>
 #define STB_IMAGE_IMPLEMENTATION
+
+
 
 
 #include <vector>

@@ -46,4 +46,12 @@ void Camera::move(DisplayManager display)
 	{
 		position.z += 0.1f;
 	}
+	if (glfwGetKey(display.getWindow(), GLFW_KEY_Q) == GLFW_PRESS)
+	{
+		pitch += 1;
+	}
+	if (glfwGetKey(display.getWindow(), GLFW_KEY_E) == GLFW_PRESS)
+	{
+		pitch -= 1;
+	}
 }
