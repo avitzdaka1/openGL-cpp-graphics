@@ -6,6 +6,7 @@ Camera::Camera()
 	this->roll = 0;
 	this->yaw = 0;
 	this->speed = 2;
+	this->position.y = 5;
 }
 
 glm::vec3 Camera::getPosition()

@@ -1,5 +1,5 @@
 
-//v0.13
+//v0.141
 
 #include "MasterRenderer.h"
 #include "OBJLoader.h"
@@ -70,7 +70,13 @@ int main()
 	Light light = Light(glm::vec3(400, 900, 200),glm::vec3(1,1,1));
 	Terrain terrain = Terrain(0,0,loader, *terrTexture);
 	Terrain terrain2 = Terrain(1, 0, loader, *terrTexture2);
-
+	Terrain terrain3 = Terrain(0, 1, loader, *terrTexture);
+	Terrain terrain4 = Terrain(1, 1, loader, *terrTexture);
+	Terrain terrain5 = Terrain(-1, 0, loader, *terrTexture);
+	Terrain terrain6 = Terrain(0, -1, loader, *terrTexture2);
+	Terrain terrain7 = Terrain(-1, -1, loader, *terrTexture);
+	Terrain terrain8 = Terrain(-1, 1, loader, *terrTexture);
+	Terrain terrain9 = Terrain(1, -1, loader, *terrTexture);
 	Camera camera = Camera();
 	
 	
@@ -102,6 +108,13 @@ int main()
 		
 		renderer.processTerrain(terrain);
 		renderer.processTerrain(terrain2);
+		renderer.processTerrain(terrain3);
+		renderer.processTerrain(terrain4);
+		renderer.processTerrain(terrain5);
+		renderer.processTerrain(terrain6);
+		renderer.processTerrain(terrain7);
+		renderer.processTerrain(terrain8);
+		renderer.processTerrain(terrain9);
 		for (int i = 0; i < 200; i++)
 			renderer.processEntity(allModels[i]);																	// Process each object.
 		
