@@ -10,6 +10,7 @@ private:
 	float pitch;
 	float yaw;
 	float roll;
+	float speed;
 
 public:
 	Camera();

@@ -44,14 +44,14 @@ int main()
 	ModelTexture* texture = new ModelTexture(loader.loadTexture("res/dragon.png"));
 	ModelTexture* texture2 = new ModelTexture(loader.loadTexture("res/stall.bmp"));
 	ModelTexture* terrTexture = new ModelTexture(loader.loadTexture("res/grass.jpg"));
-	ModelTexture* terrTexture2 = new ModelTexture(loader.loadTexture("res/water.jpg"));
+	ModelTexture* terrTexture2 = new ModelTexture(loader.loadTexture("res/water2.jpg"));
 	texture->setShineDamper(10);
 	texture->setReflectivity(1);
 	
-	TexturedModel* texturedModel = new TexturedModel(model, *texture );
+	TexturedModel* texturedModel = new TexturedModel(model, *texture);
 	TexturedModel* texturedModel2 = new TexturedModel(model2, *texture2);
 
-	//Entity entity = Entity(*texturedModel,glm::vec3(0,-5,-50),0.0f,0.0f,0.0f,1.0f);
+	
 
 	std::vector<Entity> allModels;
 	srand(time(NULL));
@@ -67,14 +67,14 @@ int main()
 		allModels.push_back(temp2);
 	}
 
-	Light light = Light(glm::vec3(0, -30, 0),glm::vec3(1,1,1));
+	Light light = Light(glm::vec3(400, 900, 200),glm::vec3(1,1,1));
 	Terrain terrain = Terrain(0,0,loader, *terrTexture);
 	Terrain terrain2 = Terrain(1, 0, loader, *terrTexture2);
 
 	Camera camera = Camera();
 	
-	TexturedModel*  t = new TexturedModel(model, terrain2.getTexture());
-	Entity temp = Entity(*t, glm::vec3(0, 0, 0), 0, -2, 0, 1);
+	
+	
 
 	double lastTime = glfwGetTime();
 	int nbFrames = 0;
@@ -87,6 +87,7 @@ int main()
 		nbFrames++;
 		if (currentTime - lastTime >= 1.0) {
 			printf("%f ms/frame   fps:  %f \n", 1000.0 / double(nbFrames), (float)nbFrames);             // Print spf and fps to console.
+			printf("Camera x: %.2f, y: %.2f, z: %.2f,   Yaw: %.2f, Pitch: %.2f, Roll: %.2f\n\n", camera.getPosition().x, camera.getPosition().y, camera.getPosition().z, camera.getYaw(), camera.getPitch(), camera.getRoll());
 			nbFrames = 0;
 			lastTime += 1.0;
 		}
@@ -99,11 +100,11 @@ int main()
 		
 		//game logic
 		
-	//	renderer.processTerrain(terrain);
-	//	renderer.processTerrain(terrain2);
-		//for (int i = 0; i < 200; i++)
-		//	renderer.processEntity(allModels[i]);																	// Process each object.
-		renderer.processEntity(temp);
+		renderer.processTerrain(terrain);
+		renderer.processTerrain(terrain2);
+		for (int i = 0; i < 200; i++)
+			renderer.processEntity(allModels[i]);																	// Process each object.
+		
 		renderer.render(light,camera);
 		display.updateDisplay();
 		

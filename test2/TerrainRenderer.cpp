@@ -14,6 +14,7 @@ void TerrainRenderer::render(std::vector<Terrain> terrains)
 	{
 		prepareTerrain(terrains[i]);
 		loadModelMatrix(terrains[i]);
+		int j = terrains[i].getModel().getVertexCount();
 		glDrawElements(GL_TRIANGLES, terrains[i].getModel().getVertexCount(), GL_UNSIGNED_INT, 0);
 
 		unbindTextureModel();
@@ -44,6 +45,6 @@ void TerrainRenderer::unbindTextureModel()
 
 void TerrainRenderer::loadModelMatrix(Terrain terrain)
 {
-	glm::mat4 transformationMatrix = Maths::createTransformationMatrix(glm::vec3(terrain.getX(), 1, terrain.getZ()), 0, 0, 0, 1);
+	glm::mat4 transformationMatrix = Maths::createTransformationMatrix(glm::vec3(terrain.getX(), 0, terrain.getZ()), 0, 0, 0, 1);
 	this->shader.loadTransformationMatrix(transformationMatrix);
 }

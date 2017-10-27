@@ -64,7 +64,6 @@ void MasterRenderer::prepare()
 void MasterRenderer::processEntity(Entity entity)
 {
 	TexturedModel entityModel = entity.getModel();
-	//std::map<TexturedModel, std::vector<Entity>>::iterator it = entities.find(entityModel);
 	std::vector<Entity> *batch = &entities[entityModel];//it->second;
 	if (!batch->empty())
 		batch->push_back(entity);

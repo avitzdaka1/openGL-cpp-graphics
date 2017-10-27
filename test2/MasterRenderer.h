@@ -6,7 +6,7 @@
 
 static const float FOV = 70;
 static const float NEAR_PLANE = 0.1f;
-static const float FAR_PLANE = 1000;
+static const float FAR_PLANE = 10000;
 
 class MasterRenderer
 {
