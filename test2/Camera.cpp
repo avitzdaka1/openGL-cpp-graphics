@@ -1,12 +1,33 @@
 #include "Camera.h"
+#include "Custom.h"
 
 Camera::Camera()
 {
-	this->pitch = 0;
-	this->roll = 0;
-	this->yaw = 0;
-	this->speed = 2;
-	this->position.y = 5;
+	if (is_file_exist("camOpt.mysetting"))
+	{
+		ifstream loadFile("camOpt.mysetting");
+		std::string load[6];
+		for (int i = 0; i < 6; i++)
+			std::getline(loadFile, load[i]);
+	
+		this->position.x = std::stof(load[0]);
+		this->position.y = std::stof(load[1]);
+		this->position.z = std::stof(load[2]);
+		this->yaw = std::stof(load[3]);
+		this->pitch = std::stof(load[4]);
+		this->roll = std::stof(load[5]);
+		this->speed = 2;
+	}
+
+
+	else
+	{
+		this->pitch = 0;
+		this->roll = 0;
+		this->yaw = 0;
+		this->speed = 2;
+		this->position.y = 5;
+	}
 }
 
 glm::vec3 Camera::getPosition()

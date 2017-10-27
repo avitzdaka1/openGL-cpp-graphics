@@ -187,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Custom.h" />
     <ClInclude Include="DisplayManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Light.h" />

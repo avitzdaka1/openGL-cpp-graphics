@@ -40,21 +40,27 @@ int main()
 	
 	RawModel* model = OBJLoader::loadObjModel("res/dragon.myobject",loader);
 	RawModel* model2 = OBJLoader::loadObjModel("res/stall.myobject", loader);
+	RawModel* plant = OBJLoader::loadObjModel("res/plant.myobject", loader);
+
+
 	
 	ModelTexture* texture = new ModelTexture(loader.loadTexture("res/dragon.png"));
 	ModelTexture* texture2 = new ModelTexture(loader.loadTexture("res/stall.bmp"));
 	ModelTexture* terrTexture = new ModelTexture(loader.loadTexture("res/grass.jpg"));
 	ModelTexture* terrTexture2 = new ModelTexture(loader.loadTexture("res/water2.jpg"));
+	ModelTexture* plantTex = new ModelTexture(loader.loadTexture("res/plant.png"));
 	texture->setShineDamper(10);
 	texture->setReflectivity(1);
 	
 	TexturedModel* texturedModel = new TexturedModel(model, *texture);
 	TexturedModel* texturedModel2 = new TexturedModel(model2, *texture2);
-
+	TexturedModel* plantModel = new TexturedModel(plant, *plantTex);
 	
-
+	
 	std::vector<Entity> allModels;
 	srand(time(NULL));
+
+	Entity plantEnt = Entity(*plantModel, glm::vec3(0, 5, 0), 0, 0, 0, 3);
 
 	for (int i = 0; i < 100; i++)
 	{
@@ -98,14 +104,13 @@ int main()
 			lastTime += 1.0;
 		}
 
-
+		renderer.processEntity(plantEnt);
 
 		for (int i = 0; i < 200; i++)
 			allModels[i].increaseRotation(0, 2, 0);																	// Rotate objects.
 		camera.move(display);
 		
 		//game logic
-		
 		renderer.processTerrain(terrain);
 		renderer.processTerrain(terrain2);
 		renderer.processTerrain(terrain3);
@@ -122,6 +127,10 @@ int main()
 		display.updateDisplay();
 		
 	}
+	std::ofstream saveFile("camOpt.mysetting");
+	saveFile << camera.getPosition().x << "\n" << camera.getPosition().y << "\n" << camera.getPosition().z << "\n" << camera.getYaw() << "\n" << camera.getPitch() << "\n" << camera.getRoll();
+
+
 	renderer.cleanUp();
 	loader.cleanUP();
 	display.closeDisplay();
