@@ -1,5 +1,4 @@
 #include "Camera.h"
-#include "Custom.h"
 
 Camera::Camera()
 {
@@ -107,4 +106,16 @@ void Camera::move(DisplayManager display)
 	{
 		this->position.y += 1;
 	}
+}
+
+bool is_file_exist(const char * fileName)
+{
+	std::ifstream infile(fileName);
+	return infile.good();
+}
+
+void saveCamera(Camera camera)
+{
+	std::ofstream saveFile("camOpt.mysetting");
+	saveFile << camera.getPosition().x << "\n" << camera.getPosition().y << "\n" << camera.getPosition().z << "\n" << camera.getYaw() << "\n" << camera.getPitch() << "\n" << camera.getRoll();
 }

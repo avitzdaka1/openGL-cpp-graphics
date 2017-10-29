@@ -170,8 +170,5 @@
     <ClInclude Include="TerrainRenderer.h">
       <Filter>Header Files\render engine</Filter>
     </ClInclude>
-    <ClInclude Include="Custom.h">
-      <Filter>Header Files\includes</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

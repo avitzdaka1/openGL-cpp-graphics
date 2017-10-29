@@ -21,3 +21,6 @@ public:
 	
 	void move(DisplayManager);
 };
+
+bool is_file_exist(const char*);
+void saveCamera(Camera);

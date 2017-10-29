@@ -1,5 +1,5 @@
 
-//v0.141
+//v0.145
 
 #include "MasterRenderer.h"
 #include "OBJLoader.h"
@@ -127,9 +127,7 @@ int main()
 		display.updateDisplay();
 		
 	}
-	std::ofstream saveFile("camOpt.mysetting");
-	saveFile << camera.getPosition().x << "\n" << camera.getPosition().y << "\n" << camera.getPosition().z << "\n" << camera.getYaw() << "\n" << camera.getPitch() << "\n" << camera.getRoll();
-
+	saveCamera(camera);
 
 	renderer.cleanUp();
 	loader.cleanUP();
