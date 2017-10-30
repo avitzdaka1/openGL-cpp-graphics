@@ -65,7 +65,7 @@ int main()
 	for (int i = 0; i < 10; i++)
 	{
 		float x = rand() % 10 *10 *pow(-1,i);
-		float y = rand() % 10  * (-1);
+		float y = 2;
 		float z = rand() % 10 * -30;
 		Entity temp = Entity(*texturedModel, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
 		Entity temp2 = Entity(*texturedModel2, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);

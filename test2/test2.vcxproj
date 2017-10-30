@@ -76,8 +76,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\external libraries\assimp\include;C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\openGL stuff\headerFiles;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\external libraries\assimp\lib;C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\openGL stuff\libFiles;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\test2\external libraries\assimp\include;$(SolutionDir)\test2\openGL stuff\headerFiles;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\test2\openGL stuff\libFiles;$(SolutionDir)\test2\external libraries\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -86,8 +86,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Maksim\Source\Repos\openGL-cpp-repo\test2\external libraries\assimp\include;C:\Users\Maksim\Source\Repos\openGL-cpp-repo\test2\openGL stuff\headerFiles;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Maksim\Source\Repos\openGL-cpp-repo\test2\external libraries\assimp\lib;C:\Users\Maksim\Source\Repos\openGL-cpp-repo\test2\openGL stuff\libFiles;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\test2\external libraries\assimp\include;$(SolutionDir)\test2\openGL stuff\headerFiles;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\test2\openGL stuff\libFiles;$(SolutionDir)\test2\external libraries\assimp\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -114,12 +114,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\external libraries\assimp\include;C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\openGL stuff\headerFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test2\external libraries\assimp\include;$(SolutionDir)\test2\openGL stuff\headerFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\openGL stuff\libFiles;C:\Users\Maks\Source\Repos\openGL-cpp-repo\test2\external libraries\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\test2\openGL stuff\libFiles;$(SolutionDir)\test2\external libraries\assimp\lib;$(LibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;glew32s.lib;glfw3.lib;glfw3dll.lib;OpenGL32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -154,14 +154,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Maksim\Source\Repos\openGL-cpp-repo\test2\external libraries\assimp\include;C:\Users\Maksim\Source\Repos\openGL-cpp-repo\test2\openGL stuff\headerFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test2\external libraries\assimp\include;$(SolutionDir)\test2\openGL stuff\headerFiles;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Maksim\Source\Repos\openGL-cpp-repo\test2\openGL stuff\libFiles;C:\Users\Maksim\Source\Repos\openGL-cpp-repo\test2\external libraries\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\test2\openGL stuff\libFiles;$(SolutionDir)\test2\external libraries\assimp\lib;$(LibraryPath);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;glew32s.lib;glfw3.lib;glfw3dll.lib;OpenGL32.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
