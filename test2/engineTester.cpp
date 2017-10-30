@@ -62,7 +62,7 @@ int main()
 
 	Entity plantEnt = Entity(*plantModel, glm::vec3(0, 5, 0), 0, 0, 0, 3);
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		float x = rand() % 10 *10 *pow(-1,i);
 		float y = rand() % 10  * (-1);
@@ -106,11 +106,12 @@ int main()
 
 		renderer.processEntity(plantEnt);
 
-		for (int i = 0; i < 200; i++)
+		for (int i = 0; i < 20; i++)
 			allModels[i].increaseRotation(0, 2, 0);																	// Rotate objects.
 		camera.move(display);
 		
 		//game logic
+	
 		renderer.processTerrain(terrain);
 		renderer.processTerrain(terrain2);
 		renderer.processTerrain(terrain3);
@@ -120,7 +121,8 @@ int main()
 		renderer.processTerrain(terrain7);
 		renderer.processTerrain(terrain8);
 		renderer.processTerrain(terrain9);
-		for (int i = 0; i < 200; i++)
+		
+		for (int i = 0; i < 20; i++)
 			renderer.processEntity(allModels[i]);																	// Process each object.
 		
 		renderer.render(light,camera);

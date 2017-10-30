@@ -42,7 +42,7 @@ GLFWwindow * DisplayManager::getWindow()
 
 void DisplayManager::updateDisplay()
 {
-//	glfwSwapInterval(0.1);
+	//glfwSwapInterval(0.1);
 	glfwSwapBuffers(window);
 	glfwPollEvents();
 }
