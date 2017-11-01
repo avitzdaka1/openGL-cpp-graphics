@@ -15,6 +15,16 @@ void ModelTexture::setReflectivity(float reflectivity)
 	this->reflectivity = reflectivity;
 }
 
+void ModelTexture::setTransparency(bool hasTransparency)
+{
+	this->hasTransparency = hasTransparency;
+}
+
+void ModelTexture::setFakeLighting(bool useFakeLighting)
+{
+	this->useFakeLighting = useFakeLighting;
+}
+
 int ModelTexture::getID()
 {
 	return this->textureID;
@@ -28,4 +38,14 @@ float ModelTexture::getShineDamper()
 float ModelTexture::getReflectivity()
 {
 	return this->reflectivity;
+}
+
+bool ModelTexture::isFakeLighting()
+{
+	return this->useFakeLighting;
+}
+
+bool ModelTexture::isGetTransparency()
+{
+	return this->hasTransparency;
 }

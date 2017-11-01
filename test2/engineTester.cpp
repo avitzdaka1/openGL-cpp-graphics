@@ -1,5 +1,5 @@
 
-//v0.145
+//v0.16
 
 #include "MasterRenderer.h"
 #include "OBJLoader.h"
@@ -51,19 +51,24 @@ int main()
 	ModelTexture* plantTex = new ModelTexture(loader.loadTexture("res/plant.png"));
 	texture->setShineDamper(10);
 	texture->setReflectivity(1);
-	
+	plantTex->setTransparency(true);
+	plantTex->setFakeLighting(true);
 	TexturedModel* texturedModel = new TexturedModel(model, *texture);
 	TexturedModel* texturedModel2 = new TexturedModel(model2, *texture2);
 	TexturedModel* plantModel = new TexturedModel(plant, *plantTex);
+	
 	
 	
 	std::vector<Entity> allModels;
 	srand(time(NULL));
 
 	Entity plantEnt = Entity(*plantModel, glm::vec3(0, 5, 0), 0, 0, 0, 3);
-
 	for (int i = 0; i < 10; i++)
 	{
+
+		
+
+
 		float x = rand() % 10 *10 *pow(-1,i);
 		float y = 2;
 		float z = rand() % 10 * -30;
@@ -71,7 +76,12 @@ int main()
 		Entity temp2 = Entity(*texturedModel2, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
 		allModels.push_back(temp);
 		allModels.push_back(temp2);
+
+
 	}
+	
+	
+	
 
 	Light light = Light(glm::vec3(400, 900, 200),glm::vec3(1,1,1));
 	Terrain terrain = Terrain(0,0,loader, *terrTexture);

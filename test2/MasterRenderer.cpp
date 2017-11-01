@@ -20,11 +20,13 @@ void MasterRenderer::render(Light sun, Camera camera)
 {
 	prepare();
 	this->shader.start();
+	this->shader.loadSkyColour(RED,GREEN,BLUE);
 	this->shader.loadLight(sun);
 	this->shader.loadViewMatrix(camera);
 	this->renderer.render(entities);
 	this->shader.stop();
 	this->terrainShader.start();
+	this->terrainShader.loadSkyColour(RED, GREEN, BLUE);
 	this->terrainShader.loadLight(sun);
 	this->terrainShader.loadViewMatrix(camera);
 	this->terrainRenderer.render(terrains);
@@ -53,18 +55,19 @@ void MasterRenderer::processTerrain(Terrain terrain)
 	terrains.push_back(terrain);
 }
 
+
 void MasterRenderer::prepare()
 {
 	glEnable(GL_DEPTH_TEST);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(1, 0, 0, 1);
+	glClearColor(RED, GREEN, BLUE, 1);
 
 }
 
 void MasterRenderer::processEntity(Entity entity)
 {
 	TexturedModel entityModel = entity.getModel();
-	std::vector<Entity> *batch = &entities[entityModel];//it->second;
+	std::vector<Entity> *batch = &entities[entityModel];
 	if (!batch->empty())
 		batch->push_back(entity);
 		else

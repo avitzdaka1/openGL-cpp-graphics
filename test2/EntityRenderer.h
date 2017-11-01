@@ -6,6 +6,7 @@
 
 
 
+
 class EntityRenderer
 {
 private:
@@ -18,5 +19,7 @@ public:
 
 	void unbindTexturedModel();
 	void prepareInstance(Entity);
+	static void enableCulling();
+	static void disableCulling();
 };
 

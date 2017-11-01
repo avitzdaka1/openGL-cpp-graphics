@@ -16,6 +16,7 @@ private:
 	int location_lightColour;
 	int location_shineDamper;
 	int location_reflectivity;
+	int location_skyColour;
 protected:
 	void bindAttributes();
 	void getAllUniformLocations();
@@ -27,4 +28,5 @@ public:
 	void loadViewMatrix(Camera);
 	void loadLight(Light light);
 	void loadShineVariables(float, float);
+	void loadSkyColour(float, float, float);
 };

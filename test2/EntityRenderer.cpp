@@ -4,9 +4,9 @@
 EntityRenderer::EntityRenderer(StaticShader shader, glm::mat4 projectionMatrix)
 {
 	this->shader = shader;
-	shader.start();
-	shader.loadProjectionMatrix(projectionMatrix);
-	shader.stop();
+	this->shader.start();
+	this->shader.loadProjectionMatrix(projectionMatrix);
+	this->shader.stop();
 }
 
 
@@ -37,6 +37,11 @@ void EntityRenderer::prepareTexturedModel(TexturedModel model)
 	glEnableVertexAttribArray(2);
 
 	ModelTexture texture = model.getModelTexture();
+	if (texture.isGetTransparency())
+	{
+		disableCulling();
+	}
+	shader.loadUseFakeLightingVariable(texture.isFakeLighting());
 	shader.loadShineVariables(texture.getShineDamper(), texture.getReflectivity());
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, model.getModelTexture().getID());
@@ -44,6 +49,7 @@ void EntityRenderer::prepareTexturedModel(TexturedModel model)
 
 void EntityRenderer::unbindTexturedModel()
 {
+	enableCulling();
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
@@ -58,3 +64,13 @@ void EntityRenderer::prepareInstance(Entity entity)
 
 
 
+void EntityRenderer::enableCulling()
+{
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+}
+
+void EntityRenderer::disableCulling()
+{
+	glDisable(GL_CULL_FACE);
+}

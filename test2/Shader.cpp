@@ -85,6 +85,13 @@ void ShaderProgram::start()
 void ShaderProgram::loadFloat(int location, float value)
 {
 	glUniform1f(location, value);
+
+	
+}
+
+void ShaderProgram::loadBoolean(int location, bool value)
+{
+	glUniform1f(location, value);
 }
 
 void ShaderProgram::stop()

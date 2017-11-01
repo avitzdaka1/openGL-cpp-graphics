@@ -7,6 +7,9 @@
 static const float FOV = 70;
 static const float NEAR_PLANE = 0.1f;
 static const float FAR_PLANE = 10000;
+static const float RED = 0.5f;
+static const float GREEN = 0.5f;
+static const float BLUE = 0.5f;
 
 class MasterRenderer
 {
@@ -28,5 +31,6 @@ public:
 	void prepare();
 	void createProjectionMatrix();
 	void processTerrain(Terrain);
+	
 	
 };

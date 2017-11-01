@@ -14,6 +14,7 @@ private:
 protected:
 	void loadVector(int, glm::vec3);
 	void loadFloat(int, float);
+	void loadBoolean(int, bool);
 	int getUniformLocation(char*);
 	virtual void getAllUniformLocations() = 0;
 	virtual void bindAttributes() = 0;
