@@ -164,7 +164,7 @@ int main()
 
 	Camera camera = Camera();
 	
-	
+
 	
 
 	double lastTime = glfwGetTime();

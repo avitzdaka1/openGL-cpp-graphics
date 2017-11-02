@@ -28,7 +28,7 @@ void OBJLoader::processVertex(std::vector<string> vertexData, std::vector<int> &
 
 /*
 
-RawModel * OBJLoader::loadObjModel(string fname, Loader loader)
+RawModel * OBJLoader::loadObjModel2(string fname, Loader loader)
 {
 
 	
@@ -105,11 +105,11 @@ RawModel * OBJLoader::loadObjModel(string fname, Loader loader)
 	ver = &tempVer[0].x;
 	tex = &tempTex[0].x;
 
-	return loader.loadToVAO(ver, vertices.size() * 3, tex, vertices.size() * 2, ind, vertices.size());
+	return loader.loadToVAO(ver, vertices.size() * 3, tex, vertices.size() * 2, ver, vertices.size() * 3, ind, vertices.size());
 }
-
-
 */
+
+
 
 
 RawModel * OBJLoader::loadObjModel(string fname, Loader loader)

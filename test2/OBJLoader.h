@@ -8,4 +8,5 @@ private:
 
 public: 
 	static RawModel* loadObjModel(string fname, Loader loader);
+	RawModel * OBJLoader::loadObjModel2(string fname, Loader loader);
 };
