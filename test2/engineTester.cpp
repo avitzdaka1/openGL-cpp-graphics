@@ -1,5 +1,5 @@
 
-//v0.16
+//v0.17
 
 #include "MasterRenderer.h"
 #include "OBJLoader.h"
@@ -38,31 +38,84 @@ int main()
 	
 	Loader loader = Loader();
 	
-	RawModel* model = OBJLoader::loadObjModel("res/dragon.myobject",loader);
-	RawModel* model2 = OBJLoader::loadObjModel("res/stall.myobject", loader);
+	RawModel* dragon = OBJLoader::loadObjModel("res/dragon.myobject",loader);				// Entity objects
+	RawModel* stall = OBJLoader::loadObjModel("res/stall.myobject", loader);
 	RawModel* plant = OBJLoader::loadObjModel("res/plant.myobject", loader);
+	RawModel* tree = OBJLoader::loadObjModel("res/tree.myobject",loader);
+	RawModel* fern = OBJLoader::loadObjModel("res/fern.myobject", loader);
+	RawModel* smallTree = OBJLoader::loadObjModel("res/smallTree.myObject", loader);
 
 
-	
-	ModelTexture* texture = new ModelTexture(loader.loadTexture("res/dragon.png"));
-	ModelTexture* texture2 = new ModelTexture(loader.loadTexture("res/stall.bmp"));
-	ModelTexture* terrTexture = new ModelTexture(loader.loadTexture("res/grass.jpg"));
-	ModelTexture* terrTexture2 = new ModelTexture(loader.loadTexture("res/water2.jpg"));
+	ModelTexture* treeTex = new ModelTexture(loader.loadTexture("res/tree.png"));			// Entities textures
+	ModelTexture* dragTex = new ModelTexture(loader.loadTexture("res/dragon.png"));
+	ModelTexture* stallTex = new ModelTexture(loader.loadTexture("res/stall.bmp"));
 	ModelTexture* plantTex = new ModelTexture(loader.loadTexture("res/plant.png"));
-	texture->setShineDamper(10);
-	texture->setReflectivity(1);
+	ModelTexture* fernTex = new ModelTexture(loader.loadTexture("res/plant.png"));
+	ModelTexture* smallTreeTex = new ModelTexture(loader.loadTexture("res/smallTree.png"));
+
+	ModelTexture* grassTex = new ModelTexture(loader.loadTexture("res/grass.jpg"));        // Terrain textures
+	ModelTexture* waterTex = new ModelTexture(loader.loadTexture("res/water2.jpg"));
+
+	dragTex->setShineDamper(10);
+	dragTex->setReflectivity(1);
 	plantTex->setTransparency(true);
 	plantTex->setFakeLighting(true);
-	TexturedModel* texturedModel = new TexturedModel(model, *texture);
-	TexturedModel* texturedModel2 = new TexturedModel(model2, *texture2);
+	fernTex->setTransparency(true);
+
+	TexturedModel* dragonModel = new TexturedModel(dragon, *dragTex);				
+	TexturedModel* stallModel = new TexturedModel(stall, *stallTex);
 	TexturedModel* plantModel = new TexturedModel(plant, *plantTex);
+	TexturedModel* treeModel = new TexturedModel(tree, *treeTex);
+	TexturedModel* fernModel = new TexturedModel(fern, *fernTex);
+	TexturedModel* smallTreeModel = new TexturedModel(smallTree, *smallTreeTex);
 	
 	
 	
 	std::vector<Entity> allModels;
+	std::vector<Entity> staticModels;
+
 	srand(time(NULL));
 
-	Entity plantEnt = Entity(*plantModel, glm::vec3(0, 5, 0), 0, 0, 0, 3);
+	
+	
+	
+	
+	for (int i = 0; i < 200; i++)
+	{
+		float x = rand() % 500 * pow(-1, i);
+		float y = 0;
+		float z = rand() % 500 * pow(-1, i);
+		Entity temp = Entity(*smallTreeModel, glm::vec3(x, y, z), 0, 0, 0, 5);
+		staticModels.push_back(temp);
+	}
+
+	for (int i = 0; i < 200; i++)
+	{
+		float x = rand() % 500 * pow(-1, i);
+		float y = 0;
+		float z = rand() % 500 * pow(-1, i);
+		Entity temp = Entity(*fernModel, glm::vec3(x, y, z), 0, 0, 0, 1);
+		staticModels.push_back(temp);
+	}
+	for (int i = 0; i < 200; i++)
+	{
+		float x = rand() % 500 * pow(-1, i);
+		float y = 0;
+		float z = rand() % 500 * pow(-1, i);
+		Entity temp = Entity(*plantModel, glm::vec3(x, y, z), 0, 0, 0, 3);
+		staticModels.push_back(temp);
+	}
+	for (int i = 0; i < 50; i++)
+	{
+		float x = rand() % 500 * pow(-1, i);
+		float y = 0;
+		float z = rand() % 500 * pow(-1, i);
+		Entity temp = Entity(*treeModel, glm::vec3(x, y, z), 0, 0, 0, 1);
+		staticModels.push_back(temp);
+	}
+	
+	
+	
 	for (int i = 0; i < 10; i++)
 	{
 
@@ -72,8 +125,8 @@ int main()
 		float x = rand() % 10 *10 *pow(-1,i);
 		float y = 2;
 		float z = rand() % 10 * -30;
-		Entity temp = Entity(*texturedModel, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
-		Entity temp2 = Entity(*texturedModel2, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
+		Entity temp = Entity(*dragonModel, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
+		Entity temp2 = Entity(*stallModel, glm::vec3(x, y, z), 0, rand() % 10, 0, 1);
 		allModels.push_back(temp);
 		allModels.push_back(temp2);
 
@@ -84,15 +137,15 @@ int main()
 	
 
 	Light light = Light(glm::vec3(400, 900, 200),glm::vec3(1,1,1));
-	Terrain terrain = Terrain(0,0,loader, *terrTexture);
-	Terrain terrain2 = Terrain(1, 0, loader, *terrTexture2);
-	Terrain terrain3 = Terrain(0, 1, loader, *terrTexture);
-	Terrain terrain4 = Terrain(1, 1, loader, *terrTexture);
-	Terrain terrain5 = Terrain(-1, 0, loader, *terrTexture);
-	Terrain terrain6 = Terrain(0, -1, loader, *terrTexture2);
-	Terrain terrain7 = Terrain(-1, -1, loader, *terrTexture);
-	Terrain terrain8 = Terrain(-1, 1, loader, *terrTexture);
-	Terrain terrain9 = Terrain(1, -1, loader, *terrTexture);
+	Terrain terrain = Terrain(0,0,loader, *grassTex);
+	Terrain terrain2 = Terrain(1, 0, loader, *waterTex);
+	Terrain terrain3 = Terrain(0, 1, loader, *grassTex);
+	Terrain terrain4 = Terrain(1, 1, loader, *grassTex);
+	Terrain terrain5 = Terrain(-1, 0, loader, *grassTex);
+	Terrain terrain6 = Terrain(0, -1, loader, *waterTex);
+	Terrain terrain7 = Terrain(-1, -1, loader, *grassTex);
+	Terrain terrain8 = Terrain(-1, 1, loader, *grassTex);
+	Terrain terrain9 = Terrain(1, -1, loader, *grassTex);
 	Camera camera = Camera();
 	
 	
@@ -114,7 +167,14 @@ int main()
 			lastTime += 1.0;
 		}
 
-		renderer.processEntity(plantEnt);
+		
+
+		
+
+		for (int i = 0; i < staticModels.size(); i++)
+		{
+			renderer.processEntity(staticModels[i]);
+		}
 
 		for (int i = 0; i < 20; i++)
 			allModels[i].increaseRotation(0, 2, 0);																	// Rotate objects.
