@@ -2,6 +2,7 @@
 #include "TerrainShader.h"
 #include "Terrain.h"
 
+
 class TerrainRenderer
 {
 private:
@@ -9,6 +10,7 @@ private:
 	void prepareTerrain(Terrain terrain);
 	void unbindTextureModel();
 	void loadModelMatrix(Terrain terrain);
+	void bindTextures(Terrain terrain);
 
 public:
 	TerrainRenderer(TerrainShader, glm::mat4);

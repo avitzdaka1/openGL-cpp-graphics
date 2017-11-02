@@ -28,6 +28,13 @@ void TerrainShader::getAllUniformLocations()
 	location_shineDamper = getUniformLocation("shineDamper");
 	location_reflectivity = getUniformLocation("reflectivity");
 	location_skyColour = getUniformLocation("skyColour");
+	location_backgroundTexture = getUniformLocation("backgroundTexture");
+	location_rTexture = getUniformLocation("rTexture");
+	location_gTexture = getUniformLocation("gTexture");
+	location_bTexture = getUniformLocation("bTexture");
+	location_blendMap = getUniformLocation("blendMap");
+
+
 }
 
 void TerrainShader::loadTransformationMatrix(glm::mat4 matrix)
@@ -61,4 +68,13 @@ void TerrainShader::loadShineVariables(float damper, float reflectivity)
 void TerrainShader::loadSkyColour(float r, float g, float b)
 {
 	loadVector(location_skyColour, glm::vec3(r, g, b));
+}
+
+void TerrainShader::connectTextureUnits()
+{
+	loadInt(location_backgroundTexture, 0);
+	loadInt(location_rTexture, 1);
+	loadInt(location_gTexture, 2);
+	loadInt(location_bTexture, 3);
+	loadInt(location_blendMap, 4);
 }

@@ -1,9 +1,10 @@
 
-//v0.17
+//v0.18
 
 #include "MasterRenderer.h"
 #include "OBJLoader.h"
 #include <time.h>
+#include "TerrainTexturePack.h"
 
 using namespace std;
 
@@ -45,6 +46,17 @@ int main()
 	RawModel* fern = OBJLoader::loadObjModel("res/fern.myobject", loader);
 	RawModel* smallTree = OBJLoader::loadObjModel("res/smallTree.myObject", loader);
 
+	TerrainTexture backgroundTexture = TerrainTexture(loader.loadTexture("res/grass.jpg"));
+	TerrainTexture rTexture = TerrainTexture(loader.loadTexture("res/sand.jpg"));
+	TerrainTexture gTexture = TerrainTexture(loader.loadTexture("res/snow.jpg"));
+	TerrainTexture bTexture = TerrainTexture(loader.loadTexture("res/water.jpg"));
+
+	
+	TerrainTexturePack texturePack = TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+	
+
+	TerrainTexture blendMap = TerrainTexture(loader.loadTexture("res/blendMap.png"));
+	TerrainTexture blendMap2 = TerrainTexture(loader.loadTexture("res/blendMap2.png"));
 
 	ModelTexture* treeTex = new ModelTexture(loader.loadTexture("res/tree.png"));			// Entities textures
 	ModelTexture* dragTex = new ModelTexture(loader.loadTexture("res/dragon.png"));
@@ -137,15 +149,19 @@ int main()
 	
 
 	Light light = Light(glm::vec3(400, 900, 200),glm::vec3(1,1,1));
-	Terrain terrain = Terrain(0,0,loader, *grassTex);
-	Terrain terrain2 = Terrain(1, 0, loader, *waterTex);
-	Terrain terrain3 = Terrain(0, 1, loader, *grassTex);
-	Terrain terrain4 = Terrain(1, 1, loader, *grassTex);
-	Terrain terrain5 = Terrain(-1, 0, loader, *grassTex);
-	Terrain terrain6 = Terrain(0, -1, loader, *waterTex);
-	Terrain terrain7 = Terrain(-1, -1, loader, *grassTex);
-	Terrain terrain8 = Terrain(-1, 1, loader, *grassTex);
-	Terrain terrain9 = Terrain(1, -1, loader, *grassTex);
+	
+	Terrain terrain = Terrain(0,0,loader, texturePack, blendMap);
+	
+	Terrain terrain2 = Terrain(1, 0, loader, texturePack, blendMap2);
+	Terrain terrain3 = Terrain(0, 1, loader, texturePack, blendMap);
+	Terrain terrain4 = Terrain(1, 1, loader, texturePack, blendMap);
+	Terrain terrain5 = Terrain(-1, 0, loader, texturePack, blendMap);
+	Terrain terrain6 = Terrain(0, -1, loader, texturePack, blendMap);
+	Terrain terrain7 = Terrain(-1, -1, loader, texturePack, blendMap);
+	Terrain terrain8 = Terrain(-1, 1, loader, texturePack, blendMap);
+	Terrain terrain9 = Terrain(1, -1, loader, texturePack, blendMap);
+
+
 	Camera camera = Camera();
 	
 	

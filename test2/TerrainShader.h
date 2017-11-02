@@ -17,6 +17,11 @@ private:
 	int location_shineDamper;
 	int location_reflectivity;
 	int location_skyColour;
+	int location_backgroundTexture;
+	int location_rTexture;
+	int location_gTexture;
+	int location_bTexture;
+	int location_blendMap;
 protected:
 	void bindAttributes();
 	void getAllUniformLocations();
@@ -29,4 +34,5 @@ public:
 	void loadLight(Light light);
 	void loadShineVariables(float, float);
 	void loadSkyColour(float, float, float);
+	void connectTextureUnits();
 };

@@ -124,6 +124,11 @@ int ShaderProgram::getUniformLocation(char* uniformName)
 	return glGetUniformLocation(this->programID, uniformName);
 }
 
+void ShaderProgram::loadInt(int location, int value)
+{
+	glUniform1i(location, value);
+}
+
 void ShaderProgram::loadVector(int location, glm::vec3 vectorf)
 {
 	glUniform3f(location, vectorf.x, vectorf.y, vectorf.z);

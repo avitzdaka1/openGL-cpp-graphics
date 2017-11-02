@@ -114,6 +114,12 @@
     <ClCompile Include="TerrainRenderer.cpp">
       <Filter>Source Files\render engine</Filter>
     </ClCompile>
+    <ClCompile Include="TerrainTexture.cpp">
+      <Filter>Source Files\textures</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainTexturePack.cpp">
+      <Filter>Source Files\textures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -169,6 +175,12 @@
     </ClInclude>
     <ClInclude Include="TerrainRenderer.h">
       <Filter>Header Files\render engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainTexture.h">
+      <Filter>Header Files\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainTexturePack.h">
+      <Filter>Header Files\textures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

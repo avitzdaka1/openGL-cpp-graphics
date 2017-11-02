@@ -40,10 +40,11 @@ RawModel* Terrain::generateTerrain(Loader loader)
 	
 }
 
-Terrain::Terrain(int gridX, int gridZ, Loader loader, ModelTexture texture)
-	:texture(texture), model(0,0)
+Terrain::Terrain(int gridX, int gridZ, Loader loader, TerrainTexturePack texturePack, TerrainTexture blendMap)
+	: model(0,0)
 {
-	this->texture = texture;
+	this->texturePack = texturePack;
+	this->blendMap = blendMap;
 	this->x = gridX * SIZE;
 	this->z = gridZ * SIZE;
 	this->model = *generateTerrain(loader);
@@ -64,7 +65,14 @@ RawModel Terrain::getModel()
 	return this->model;
 }
 
-ModelTexture Terrain::getTexture()
+
+
+TerrainTexturePack Terrain::getTerrainTexturePack()
 {
-	return this->texture;
+	return this->texturePack;
+}
+
+TerrainTexture Terrain::getBlendMap()
+{
+	return this->blendMap;
 }

@@ -12,6 +12,7 @@ private:
 	int loadShader(const string, int);
 
 protected:
+	void loadInt(int,int);
 	void loadVector(int, glm::vec3);
 	void loadFloat(int, float);
 	void loadBoolean(int, bool);
