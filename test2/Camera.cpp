@@ -117,5 +117,5 @@ bool is_file_exist(const char * fileName)
 void saveCamera(Camera camera)
 {
 	std::ofstream saveFile("camOpt.mysetting");
-	saveFile << camera.getPosition().x << "\n" << camera.getPosition().y << "\n" << camera.getPosition().z << "\n" << camera.getYaw() << "\n" << camera.getPitch() << "\n" << camera.getRoll();
+	saveFile << camera.getPosition().x << "\n" << camera.getPosition().y << "\n" << camera.getPosition().z << "\n" << (int)camera.getYaw() % 360 << "\n" << (int)camera.getPitch() % 360 << "\n" << (int)camera.getRoll() % 360;
 }
