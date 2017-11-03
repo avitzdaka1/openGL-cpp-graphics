@@ -13,6 +13,7 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <chrono>
 #define STB_IMAGE_IMPLEMENTATION
 
 
@@ -21,12 +22,18 @@
 #include <vector>
 
 using namespace std;
+using namespace std::chrono;
+
+static long lastFrameTime;
+static float delta;
+
+
 
 class DisplayManager
 {
 private:
-	const int WIDTH = 1280;
-	const int HEIGHT = 720;
+	const int WIDTH = 1920;
+	const int HEIGHT = 1080;
 	const int FPS_CAP = 60;
 	GLFWwindow* window;
 public:
@@ -39,4 +46,7 @@ public:
 	void closeDisplay();
 
 	GLFWwindow* getWindow();
+
+	static milliseconds getCurrentTime();
 };
+
